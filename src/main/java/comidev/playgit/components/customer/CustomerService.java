@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import comidev.playgit.components.customer.dto.CustomerCreate;
 import comidev.playgit.components.customer.dto.CustomerDetails;
 import lombok.AllArgsConstructor;
 
@@ -19,7 +20,13 @@ public class CustomerService {
                 .collect(Collectors.toList());
     }
 
-    public CustomerDetails registerCustomer(Customer body) {
-        return new CustomerDetails(customerRepo.save(body));
+    public CustomerDetails registerCustomer(CustomerCreate body) {
+        String email = body.getEmail();
+        boolean existsEmail = customerRepo.existsByEmail(email);
+        if (existsEmail) {
+            throw new IllegalArgumentException("El email ya existe!!");
+        }
+        Customer customer = new Customer(body);
+        return new CustomerDetails(customerRepo.save(customer));
     }
 }

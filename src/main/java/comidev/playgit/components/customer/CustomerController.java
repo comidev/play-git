@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import comidev.playgit.components.customer.dto.CustomerCreate;
 import comidev.playgit.components.customer.dto.CustomerDetails;
 import lombok.AllArgsConstructor;
 
@@ -29,7 +30,8 @@ public class CustomerController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public CustomerDetails registerCustomer(@RequestBody Customer body) {
+    public CustomerDetails registerCustomer(
+            @RequestBody CustomerCreate body) {
         return customerService.registerCustomer(body);
     }
 }

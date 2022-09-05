@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import comidev.playgit.components.customer.dto.CustomerCreate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,14 @@ public class Customer {
     private String email;
     private Integer edad;
 
+    public Customer(CustomerCreate dto) {
+        this.name = dto.getName();
+        this.email = dto.getEmail();
+        this.edad = dto.getEdad();
+    }
+
     public Customer(Long id) {
         this.id = id;
     }
+
 }
