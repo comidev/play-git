@@ -18,4 +18,8 @@ public class CustomerService {
                 .map(CustomerDetails::new)
                 .collect(Collectors.toList());
     }
+
+    public CustomerDetails registerCustomer(Customer body) {
+        return new CustomerDetails(customerRepo.save(body));
+    }
 }
